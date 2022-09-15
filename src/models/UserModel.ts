@@ -9,8 +9,9 @@ const UserSchema = new Schema<IUserModel>({
   password: { type: String, required: true },
   role: { type: Number, required: true },
   id: { type: String, required: true },
+  points: { type: Number, required: true }
 });
 
-interface UserDocument extends IUserModel, Document {}
+interface UserDocument extends IUserModel, Document { }
 
 export const UserModel = model<UserDocument>('users', UserSchema);
