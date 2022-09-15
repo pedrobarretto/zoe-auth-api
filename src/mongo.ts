@@ -7,7 +7,7 @@ const conn = mongoose.connection;
 
 export function connect() {
   mongoose.connect(process.env.MONGO_URL, {
-    dbName: 'ratemyideia-cluster',
+    dbName: 'auth-zoe',
   });
 
   conn.on('connected', () => {

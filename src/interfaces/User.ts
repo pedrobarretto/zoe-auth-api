@@ -4,6 +4,7 @@ export interface User {
   name: string;
   lastName: string;
   email: string;
+  points: number;
 }
 
 export interface InternUser extends User {

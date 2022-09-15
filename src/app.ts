@@ -27,7 +27,8 @@ app.post(
   checkUserCredentials,
   async (req: Request, res: Response) => {
     const { name, lastName, email, password } = req.body;
-    const user = await userApp.register({ name, lastName, email, password });
+    const points = 0;
+    const user = await userApp.register({ name, lastName, email, password, points });
     req.session.userId = user.id;
     req.session.save();
     return res.status(201).json(user);
