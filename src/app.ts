@@ -10,11 +10,7 @@ import { connect } from './mongo';
 const app = express();
 
 app.use(express.json());
-app.use(
-  cors({
-    origin: process.env.AXIOS_BASE_URL,
-  })
-);
+app.use(cors());
 app.use(
   session({
     secret: process.env.SESSION_SECRET,
@@ -28,7 +24,13 @@ app.post(
   async (req: Request, res: Response) => {
     const { name, lastName, email, password } = req.body;
     const points = 0;
-    const user = await userApp.register({ name, lastName, email, password, points });
+    const user = await userApp.register({
+      name,
+      lastName,
+      email,
+      password,
+      points,
+    });
     req.session.userId = user.id;
     req.session.save();
     return res.status(201).json(user);
