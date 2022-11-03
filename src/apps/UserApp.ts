@@ -23,7 +23,7 @@ class UserApp {
       name,
       lastName,
       email,
-      points: 0
+      points: 0,
     };
     const newUser: IUserModel = {
       ...user,
