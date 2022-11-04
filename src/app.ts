@@ -1,11 +1,12 @@
-import cors from 'cors';
-import express, { Response, Request } from 'express';
-import session from 'express-session';
+/* eslint-disable prettier/prettier */
+import cors from "cors";
+import express, { Response, Request } from "express";
+import session from "express-session";
 
-import { userApp } from './apps/UserApp';
-import { ONE_HOUR } from './interfaces/Time';
-import { checkUserCredentials } from './middlewares/UserMiddleware';
-import { connect } from './mongo';
+import { userApp } from "./apps/UserApp";
+import { ONE_HOUR } from "./interfaces/Time";
+import { checkUserCredentials } from "./middlewares/UserMiddleware";
+import { connect } from "./mongo";
 
 const app = express();
 
@@ -19,7 +20,7 @@ app.use(
 );
 
 app.post(
-  '/register',
+  "/auth/register",
   checkUserCredentials,
   async (req: Request, res: Response) => {
     const { name, lastName, email, password } = req.body;
@@ -37,7 +38,7 @@ app.post(
   }
 );
 
-app.post('/auth/login', async (req: Request, res: Response) => {
+app.post("/auth/login", async (req: Request, res: Response) => {
   const { email, password } = req.body;
   const { isPasswordValid, userId, token } = await userApp.login({
     email,
@@ -50,7 +51,7 @@ app.post('/auth/login', async (req: Request, res: Response) => {
   return res.status(200).json({ userId, token });
 });
 
-app.post('/auth/logout', async (req: Request, res: Response) => {
+app.post("/auth/logout", async (req: Request, res: Response) => {
   req.session.userId = null;
   req.session.destroy((err) => {
     console.debug(err);
@@ -58,7 +59,7 @@ app.post('/auth/logout', async (req: Request, res: Response) => {
   return res.sendStatus(200);
 });
 
-app.get('/secret', (req: Request, res: Response) => {
+app.get("/secret", (req: Request, res: Response) => {
   if (req.session.userId) {
     return res.send(`Logado com sucesso! Seu id: ${req.session.userId}`);
   }
@@ -69,7 +70,7 @@ app.get('/secret', (req: Request, res: Response) => {
 connect();
 
 app.listen(process.env.PORT, () => {
-  console.log('**********************************************');
+  console.log("**********************************************");
   console.log(`************Auth API - Porta: ${process.env.PORT}************`);
-  console.log('**********************************************');
+  console.log("**********************************************");
 });
