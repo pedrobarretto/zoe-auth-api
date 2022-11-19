@@ -11,6 +11,10 @@ class AuthApp {
     return hashedPassword;
   }
 
+  verifyToken(token: string) {
+    return jsonwebtoken.verify(token, process.env.TOKEN_SECRET);
+  }
+
   async isPasswordValid(
     password: string,
     hashedPassword: string

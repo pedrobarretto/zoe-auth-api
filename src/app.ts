@@ -5,6 +5,7 @@ import session from "express-session";
 
 import { userApp } from "./apps/UserApp";
 import { ONE_HOUR } from "./interfaces/Time";
+import { checkLoginData } from './middlewares/LoginMiddleware';
 import { checkUserCredentials } from "./middlewares/UserMiddleware";
 import { connect } from "./mongo";
 
@@ -38,7 +39,7 @@ app.post(
   }
 );
 
-app.post("/auth/login", async (req: Request, res: Response) => {
+app.post("/auth/login", checkLoginData, async (req: Request, res: Response) => {
   const { email, password } = req.body;
   const { isPasswordValid, userId, token } = await userApp.login({
     email,
