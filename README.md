@@ -1,23 +1,13 @@
-# Express Auth API Template
+# Zoe - Auth API
 
-To facilitate mine and your creation of projects using Express, I made this dependency template.
+Authentication API, using:
 
-The template includes the following dependencies:
-- Express
-- Express-session
-- Typescript
-- Eslint (Single Quotes, Airbnb)
-- Prettier
+- Node.js
+- MongoDB and Mongoose
 - Axios
-- bcrypt
-- jsonwebtoken
+- Bcrypt
+- express
+- Express Session
+- Jsonwebtoken
 
-How to use the template:
-
-#### `Use this repository as a template for your base auth service`
-#### `npm install`
-#### `npm run dev`
-
-To change the main file, from "app.ts" to "index.ts", for example, just renew the command in package.json, and rename the file.
-
-- src/app.ts -> src/index.ts
+API used for account creation and user authentication via front-end.
